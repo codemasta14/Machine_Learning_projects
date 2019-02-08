@@ -98,3 +98,4 @@ predictions = classifier2.predict(X_test)
 cm2 = confusion_matrix(y_test,predictions)
 print(cm2)
 print(accuracy(cm2))
+
