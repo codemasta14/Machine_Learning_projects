@@ -1,0 +1,38 @@
+When your assignment is complete, please answer the questions in this text file and upload it to I-Learn.
+
+1. If you did not include your source code in your I-Learn submission, please provide the URL of your public GitHub repository.
+https://github.com/codemasta14/Machine_Learning_projects/blob/master/Assignment_3.py
+
+2. What was the most difficult part of this assignment?
+PANDAS IS STUPID
+
+3. Briefly describe your process for handling non-numeric data.
+I chose either to one hot encode it, or turn it into numbers. I decided which based on if it was scaleable.
+
+4. Briefly describe your process for missing data.
+I replaced some things with means, and some things I dropped.
+
+5. Describe your results for the Car Evaluation dataset.
+THey were good
+
+6. Describe your results for the Automobile MPG  dataset.
+They were good
+
+7. Describe your results for the Student Performance dataset.
+They were good
+
+8. Describe anything you did to go above and beyond the minimum standard requirements.
+I used my own algorithm instead of KNN
+
+9. Please select the category you feel best describes your assignment:
+1 - Some attempt was made
+2 - Developing, but significantly deficient
+3 - Slightly deficient, but still mostly adequate
+4 - Meets requirements
+5 - Shows creativity and excels above and beyond requirements
+
+5
+
+10. Provide a brief justification (1-2 sentences) for selecting that category.
+
+I spent over 7 hours on this assignment. Pandas is dumb.
