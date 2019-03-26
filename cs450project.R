@@ -17,6 +17,10 @@ unique(gold$Type)
 
 info <- read_csv(here::here("data/matchinfo.csv"))
 
+positions <- info%>%
+  gather(`blueTop`,`blueJungle`,`blueMiddle`,`blueADC`,`blueSupport`,`redTop`,`redJungle`,`redMiddle`,`redADC`,`redSupport`,key = "position",value = "name")%>%
+  select(Address,position,name)
+
 gold_dif <- gold%>%
   gather(time,contains('min'),value = gold)%>%
   mutate(time = as.numeric(str_remove_all(time,"\\D")))%>%
@@ -62,3 +66,24 @@ kills <- read_csv(here::here("data/kills.csv"))%>%
             unlist(str_split(y," "))[2])),
      .vars = with_vars(colnames(.),contains("Assist")))}
 
+
+kill <- left_join(kills,positions,by = c("kill_player"="name","Address"))%>%
+  group_by(kill_player,Address)%>%
+  summarize(kills = n())
+
+death <- left_join(kills,positions,by = c("dead_player"="name","Address"))%>%
+  group_by(dead_player,Address)%>%
+  summarize(deaths = n())
+
+assists <- kills%>%
+  gather(contains("Assist"),key = "useless",value = "assist")%>%
+  mutate(assist = unlist(assist))%>%
+  filter(!is.na(assist))%>%
+  left_join(positions, by = c("assist" ="name","Address"))%>%
+  group_by(assist,Address)%>%
+  summarize(assists = n())
+
+kda <- full_join(kill,death, by = c("kill_player" = "dead_player", "Address"))%>%
+  full_join(assists, by = c("kill_player" = "assist", "Address"))%>%
+  mutate_at(.vars =c(3,4,5),function(x)map(x,function(y) ifelse(is.na(y),0,y)))
+    
