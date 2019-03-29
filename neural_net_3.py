@@ -81,15 +81,23 @@ class neural_net():
         for outs in range(outputs):
             self.layer_list["output"]["node{}".format(outs)] = node(nodes)
                 
+<<<<<<< HEAD
     def train(self,data,y,iterations,learn_rate):
         if data.ndim ==1:
             times = 1
             inputs = data
             target = y
+=======
+    def train(self,data,y):
+        if data.ndim ==1:
+            times = 1
+            inputs = data
+>>>>>>> 22576c2c35e02995408c10f6ce5655857f6aa910
             
         else:
             times = data.shape[0]
             inputs = data[n]
+<<<<<<< HEAD
             target = y[n]
         
         for n in range(times):
@@ -108,6 +116,15 @@ class neural_net():
                
     
     def predict(self,inputs,outputs = True):
+=======
+        
+        for n in range(times):
+               
+               print(self.predict(inputs))
+               
+    
+    def predict(self,inputs):
+>>>>>>> 22576c2c35e02995408c10f6ce5655857f6aa910
         
         classes= []
         if inputs.ndim ==1:
@@ -126,7 +143,11 @@ class neural_net():
                     self.layer_list[layer]["output"] = []
                     for i, node in enumerate(self.layer_list[layer]):
                         if node != 'output':
+<<<<<<< HEAD
                             self.layer_list[layer]["output"].append(self.layer_list[layer][node].activate(data))
+=======
+                            self.layer_list[layer]["output"].append(self.layer_list[layer][node].output(data))
+>>>>>>> 22576c2c35e02995408c10f6ce5655857f6aa910
                     data = np.array(self.layer_list[layer]["output"])
                     
               
@@ -143,6 +164,7 @@ class neural_net():
                     classes.append(1)
             else:
                 classes.append(int(re.search("\d",max(self.layer_list["output"]["output"])).group(0)))
+<<<<<<< HEAD
         cam = self.layer_list['output']['output']
         self.layer_list["output"].pop('output')
         if outputs:
@@ -188,3 +210,14 @@ dictlist
 wow = [] 
 for v in s.values():
     wow.append(v)
+=======
+            
+        return(classes)
+
+
+cody = neural_net(4,5,4,3)
+cody.predict(wow)
+
+accuracy(cody.predict(wow),y)
+
+>>>>>>> 22576c2c35e02995408c10f6ce5655857f6aa910
